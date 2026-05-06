@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O DIÁRIO DE ERICK MATTOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --futuro-azul: #050c18;
+            --sistema-vermelho: #660000;
+            --transicao-ponte: #b34700;
+            --passado-laranja: #ff7e5f;
+            --text-light: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--futuro-azul); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* HEADER */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('01a.png') center/cover;
+        }
+
+        .title-wrapper { font-family: 'Orbitron', sans-serif; }
+        .title-top { font-size: 2rem; letter-spacing: 12px; display: block; margin-bottom: -5px; }
+        .title-main { font-size: 5rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .credits { margin-top: 25px; font-size: 1rem; letter-spacing: 5px; opacity: 0.7; text-transform: uppercase; }
+
+        /* SEÇÕES - Removido padding lateral fixo para permitir imagem full-width */
+        section { padding: 100px 0; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        
+        /* Container para textos não encostarem na borda */
+        .content-wrap { padding: 0 10%; width: 100%; }
+
+        .video-section { background-color: var(--futuro-azul); padding: 50px 0; text-align: center; }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; /* Ocupa a tela toda */
+            margin: 0 auto;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* GRADIENTES */
+        .section-intro { background: linear-gradient(to bottom, var(--futuro-azul), #1a0808); }
+        .section-sistema { background: linear-gradient(to bottom, #1a0808, var(--sistema-vermelho)); }
+        .section-chave { background: linear-gradient(to bottom, var(--sistema-vermelho), var(--transicao-ponte), var(--passado-laranja)); }
+        .section-passado { background: var(--passado-laranja); color: #1a0808; }
+
+        /* IMAGENS OCUPANDO A LATERAL DA TELA */
+        .image-container {
+            width: 100%;
+            max-width: 100%; /* Alterado de 950px para 100% */
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .image-container img { 
+            width: 100%; 
+            height: auto;
+            display: block; 
+            transition: 0.5s; 
+            object-fit: cover;
+        }
+        
+        .synopsis-box { background: rgba(0,0,0,0.3); padding: 40px; border-radius: 10px; margin-top: 30px; border-left: 4px solid white; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-in-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 2.8rem; }
+            .title-top { font-size: 1.2rem; }
+            .content-wrap { padding: 0 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-wrapper reveal active">
+            <span class="title-top">O DIÁRIO DE</span>
+            <h1 class="title-main">ERICK MATTOS</h1>
+            <p class="credits">Um Filme De Israel Mattos</p>
+        </div>
+    </header>
+
+    <!-- TEASER FULL WIDTH -->
+    <div class="video-section">
+        <div class="content-wrap"><h2 class="reveal" style="font-family: Orbitron; margin-bottom: 30px;">TEASER</h2></div>
+        <div class="video-container reveal">
+            <iframe src="https://www.youtube.com/embed/w3GVv26oNAQ?si=_ZPaSteygcx0uKc5" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- SINOPSE -->
+    <section class="section-intro">
+        <div class="content-wrap"><h2 class="reveal" style="font-family: Orbitron; text-align: center; margin-bottom: 30px;">SINOPSE</h2></div>
+        <div class="image-container reveal">
+            <img src="07 (1).png" alt="Diário">
+        </div>
+    </section>
+
+    <!-- PLENA IGUALDADE -->
+    <section class="section-sistema">
+        <div class="content-wrap">
+            <div class="synopsis-box reveal">
+                <p style="margin-bottom: 20px;">Ano de 2110. A humanidade conquistou o espaço e a viagem no tempo, mas se perdeu em uma cultura mundial única...</p>
+                <p>Sob a chamada “PLENA IGUALDADE”, o sistema eliminou toda e qualquer forma de identidade...</p>
+                <p style="margin-top:15px; font-weight: bold; color: #ff4d4d;">Ninguém nasce. Ninguém morre. Tudo é permitido. Tudo é igual.</p>
+            </div>
+        </div>
+        <div class="image-container reveal">
+            <img src="04.jpg" alt="Sistema">
+        </div>
+    </section>
+
+    <!-- A CHAVE -->
+    <section class="section-chave">
+        <div class="content-wrap" style="text-align: center;">
+            
+        </div>
+        <div class="image-container reveal">
+            <img src="crianca.jpg" alt="A Criança">
+        </div>
+        <div class="content-wrap">
+            <p class="reveal" style="max-width: 800px; margin: 20px auto; font-size: 1.2rem; line-height: 1.6; text-align: center;">
+                Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado...
+            </p>
+        </div>
+    </section>
+
+    <!-- RESISTÊNCIA -->
+    <section class="section-passado">
+        <div class="content-wrap"><h2 class="reveal" style="font-family: Orbitron; text-align: center;">MEMÓRIA É RESISTÊNCIA</h2></div>
+        <div class="image-container reveal">
+            <img src="03.jpg" alt="Resistência">
+        </div>
+        <div class="content-wrap">
+            <div class="synopsis-box reveal" style="border-left-color: #1a0808; color: #1a0808; background: rgba(255,255,255,0.2);">
+                <p>É nesse cenário que um grupo de guerreiros conhecido como <strong>NSAD</strong> decide arriscar tudo...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #000; padding: 60px; text-align: center;">
+        <p style="font-family: Orbitron; letter-spacing: 3px;">PROJETO NSAD</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ficção Científica | Aventura | Drama</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>

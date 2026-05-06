@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>O DIÁRIO DE ERICK MATTOS | Site Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --futuro-azul: #050c18;
+            --sistema-vermelho: #660000;
+            --transicao-ponte: #b34700;
+            --passado-laranja: #ff7e5f;
+            --text-light: #f5f5f5;
+            --glass: rgba(255, 255, 255, 0.05);
+            --dark-gray: #050c18; 
+            --gray: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { 
+            width: 100%;
+            overflow-x: hidden; 
+            background-color: var(--futuro-azul);
+        }
+
+        body { 
+            font-family: 'Rajdhani', sans-serif; 
+            color: var(--text-light); 
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('01a.png') center/cover;
+            position: relative;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, var(--futuro-azul));
+        }
+
+        .title-wrapper { font-family: 'Orbitron', sans-serif; z-index: 2; padding: 0 20px; }
+        .title-top { font-size: clamp(0.8rem, 2vw, 1.5rem); letter-spacing: 10px; display: block; margin-bottom: 10px; color: var(--passado-laranja); }
+        .title-main { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; }
+        .credits { margin-top: 25px; font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; }
+
+        section { padding: 80px 0; position: relative; width: 100%; background-color: var(--futuro-azul); }
+        .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 25px; z-index: 2; position: relative; }
+
+        h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom: 30px; letter-spacing: 3px; text-transform: uppercase; }
+
+        .video-section { background-color: var(--futuro-azul); padding-bottom: 60px; }
+        .video-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #000;
+        }
+        .video-container iframe { width: 100%; height: 100%; border: none; }
+
+        .synopsis-box { 
+            background: var(--glass); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            padding: clamp(20px, 5vw, 40px); 
+            border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            overflow: hidden;
+        }
+
+        .creator-grid {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 30px;
+            align-items: center;
+        }
+        .creator-image-wrapper {
+            flex: 1 1 300px; 
+            max-width: 100%;
+        }
+        .creator-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--transicao-ponte);
+            filter: grayscale(0.4);
+        }
+        .creator-text {
+            flex: 2 1 350px;
+        }
+
+        /* Estilo para o gradiente nas imagens (apagando no topo e no fim) */
+        .image-container { 
+            width: 100%; 
+            margin: 40px 0; 
+            overflow: hidden;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        }
+
+        .image-container img { 
+            width: 100%; 
+            max-width: 100%;
+            height: auto; 
+            display: block; 
+            object-fit: cover;
+        }
+
+        .section-intro, .section-sistema, .section-chave, .section-passado { 
+            background: var(--futuro-azul); 
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ESTILOS DO RODAPÉ ATUALIZADO */
+        footer { 
+            background: #000; 
+            padding: 60px 20px; 
+            text-align: center; 
+            width: 100%; 
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            height: 50px; /* Ajuste a altura da sua logo aqui */
+            width: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-item {
+            color: var(--text-light);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            transition: 0.3s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .social-item:hover {
+            background: var(--passado-laranja);
+            border-color: var(--passado-laranja);
+            color: #000;
+        }
+
+        .mantenedora {
+            padding: 100px 0;
+            background-color: var(--futuro-azul);
+            position: relative;
+        }
+        
+        .mantenedora-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .mantenedora-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mantenedora h2 { text-align: center; }
+        .mantenedora-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mantenedora-item {
+            background-color: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mantenedora-item h3 {
+            color: var(--passado-laranja);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .mantenedora-porque {
+            background-color: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-left: 5px solid var(--passado-laranja);
+            margin: 40px 0;
+        }
+
+        @media (max-width: 480px) {
+            .footer-brand { flex-direction: column; gap: 10px; }
+            .content-wrap { padding: 0 20px; }
+            section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-wrapper reveal active">
+            <span class="title-top">O DIÁRIO DE</span>
+            <h1 class="title-main">ERICK MATTOS</h1>
+            <p class="credits">Um Filme De Israel Mattos</p>
+        </div>
+    </header>
+
+    <div class="video-section">
+        <div class="content-wrap" style="text-align: center;"><h2 class="reveal">TEASER</h2></div>
+        <div class="video-container reveal">
+            <iframe src="https://www.youtube.com/embed/w3GVv26oNAQ?si=_ZPaSteygcx0uKc5" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <section class="section-intro">
+        <div class="content-wrap">
+            <h2 class="reveal" style="text-align: center;">SINOPSE</h2>
+            <div class="synopsis-box reveal">
+                <p>
+Ano de 2110. A humanidade conquistou o espaço e a viagem no tempo, mas se perdeu em uma cultura mundial única, onde o hedonismo, o niilismo e o relativismo dominam o modo de existir.
+<br><br>
+Sob a chamada “PLENA IGUALDADE”, o sistema do novo governo mundial eliminou toda e qualquer forma de identidade e valor das coisas e ações. A “Família”, tratada como a maior ameaça ao Estado, foi perseguida até deixar de existir. Não existem crianças, nem idosos.
+Ninguém nasce. Ninguém morre.
+Tudo é permitido.
+Tudo é igual. A fé já não existe mais.<br><br><br>
+
+Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museu, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
+<br><br>
+É nesse cenário que um grupo de guerreiros conhecido como NSAD, inspirado justamente nesse diário, decide arriscar tudo, usar a viagem no tempo para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.</p>
+            </div>
+        </div>
+        <div class="image-container reveal">
+            <img src="background.jpg" alt="O Diário">
+        </div>
+    </section>
+
+    <section class="section-chave">
+        <div class="image-container reveal">
+            <img src="crianca.png" alt="A Criança">
+        </div>
+        <div class="content-wrap">
+            <p class="reveal" style="max-width: 800px; margin: 20px auto; font-size: 1.2rem; line-height: 1.6; text-align: center;">
+                Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado... A memória de um tempo esquecido torna-se a maior ameaça ao sistema.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="content-wrap">
+            <h2 class="reveal" style="text-align: center;">O IDEALIZADOR</h2>
+            <div class="synopsis-box reveal">
+                <div class="creator-grid">
+                    <div class="creator-image-wrapper">
+                        <img src="foto.png" alt="Israel Mattos" class="creator-image">
+                    </div>
+                    <div class="creator-text">
+                        <h3 style="font-family: Orbitron; color: var(--passado-laranja); margin-bottom: 15px;">Israel Mattos</h3>
+                        <p>Israel Mattos, conhecido como "O General", atua como produtor artístico e diretor de curtas e videoclipes, com uma trajetória marcada por mais de 200 clipes produzidos ao longo de sua carreira. Trabalhou com nomes como Luciano Camargo, Sérgio Reis e dezenas de artistas do cenário gospel.</p>
+                        <p style="margin-top: 15px;">"O Diário de Erick Mattos" é o ápice de uma pesquisa sobre o que nos torna verdadeiramente humanos em um mundo digital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mantenedora" id="mantenedora">
+        <div class="content-wrap">
+            <div class="mantenedora-content animate">
+                <h2 class="reveal">FASE 01 – MANTENEDORA</h2>
+                <div class="mantenedora-intro reveal">
+                    <p>Antes de qualquer cena ser filmada, existe uma etapa essencial e invisível: manter a equipe de produção viva e 100% dedicada ao projeto.</p>
+                </div>
+                
+                <div class="mantenedora-grid">
+                    <div class="mantenedora-item reveal"><h3>Produção de Site</h3><p>Desenvolvimento e manutenção do site oficial.</p></div>
+                    <div class="mantenedora-item reveal"><h3>Vídeos de Produção</h3><p>Criação de making of e teasers.</p></div>
+                    <div class="mantenedora-item reveal"><h3>Logística</h3><p>Transporte, alimentação e hospedagem da equipe.</p></div>
+                    <div class="mantenedora-item reveal"><h3>Sustento</h3><p>Recursos para dedicação integral ao projeto.</p></div>
+                </div>
+                
+                <div class="mantenedora-porque reveal">
+                    <h3>Por quê?</h3>
+                    <p>Sem esse apoio, não é possível realizar as reuniões necessárias com influenciadores e parceiros que viabilizarão o financiamento do filme, já que não contamos com incentivos fiscais como a Lei Rouanet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="content-wrap">
+            <div class="footer-brand">
+                <p style="font-family: Orbitron; letter-spacing: 5px; font-size: 1.2rem; margin: 0;">PROJETO</p>
+                <!-- Substitua 'logo.png' pelo nome do seu arquivo de imagem -->
+                <img src="O_Símbolo_NSAD-removebg-preview.png" alt="Logo NSAD" class="footer-logo">
+            </div>
+
+            <div class="social-links">
+                <a target="_blank" href="https://www.youtube.com/@nossomosadiferenca" class="social-item">YouTube</a>
+                <a target="_blank" href="https://www.instagram.com/nsadoficial/" class="social-item">Instagram</a>
+                <a target="_blank" href="#" class="social-item">Twitter</a>
+                <a target="_blank" href="https://www.tiktok.com/@nsadoficial/" class="social-item">Tik Tok</a>
+                <a target="_blank" href="https://apoia.se/odiariodeerickmattos" class="social-item">Apoia-se</a>
+                <a target="_blank" href="#" class="social-item">WhatsApp</a>
+            </div>
+
+            <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 10px;">Ficção Científica | 2026 | Israel Mattos</p>
+        </div>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>

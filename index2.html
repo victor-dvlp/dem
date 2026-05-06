@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O DIÁRIO DE ERICK MATTOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --futuro-azul: #050c18;
+            --sistema-vermelho: #660000;
+            --transicao-ponte: #b34700; /* Laranja de transição */
+            --passado-laranja: #ff7e5f;
+            --text-light: #f5f5f5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--futuro-azul); color: var(--text-light); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* HEADER - TÍTULO CONFORME DESENHO */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('01a.png') center/cover;
+        }
+
+
+        .title-wrapper { font-family: 'Orbitron', sans-serif; }
+        .title-top { font-size: 2rem; letter-spacing: 12px; display: block; margin-bottom: -5px; }
+        .title-main { font-size: 5rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        .credits { margin-top: 25px; font-size: 1rem; letter-spacing: 5px; opacity: 0.7; text-transform: uppercase; }
+
+        section { padding: 100px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+
+        /* ESTILO DO VÍDEO YOUTUBE */
+        .video-section { background-color: var(--futuro-azul); padding: 50px 10%; text-align: center; }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* GRADIENTES DE TRANSIÇÃO */
+        .section-intro { background: linear-gradient(to bottom, var(--futuro-azul), #1a0808); }
+        .section-sistema { background: linear-gradient(to bottom, #1a0808, var(--sistema-vermelho)); }
+        .section-chave { 
+            background: linear-gradient(to bottom, var(--sistema-vermelho), var(--transicao-ponte), var(--passado-laranja));
+        }
+        .section-passado { 
+            background: var(--passado-laranja); color: #1a0808; 
+        }
+
+        /* ELEMENTOS VISUAIS */
+        .image-container {
+            width: 100%;
+            max-width: 950px;
+            margin: 40px auto;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .image-container img { width: 100%; display: block; transition: 0.5s; }
+        .quote { font-size: 1.6rem; text-align: center; max-width: 900px; margin: 0 auto; line-height: 1.6; font-weight: 300; font-style: italic; }
+        .synopsis-box { background: rgba(0,0,0,0.3); padding: 40px; border-radius: 10px; margin-top: 30px; border-left: 4px solid white; }
+
+        /* ANIMAÇÕES */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-in-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 2.8rem; }
+            .title-top { font-size: 1.2rem; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title-wrapper reveal active">
+            <span class="title-top">O DIÁRIO DE</span>
+            <h1 class="title-main">ERICK MATTOS</h1>
+            <p class="credits">Um Filme De Israel Mattos</p>
+        </div>
+    </header>
+
+    <!-- SEÇÃO DO VÍDEO YOUTUBE -->
+    <div class="video-section">
+        <h2 class="reveal" style="font-family: Orbitron; text-align: center; margin-bottom: 30px;">TEASER</h2>
+        <div class="video-container reveal">
+            <!-- SUBSTITUA O ID 'SEU_ID_DO_VIDEO' PELA URL OU ID DO VÍDEO -->
+            <iframe src="https://www.youtube.com/embed/w3GVv26oNAQ?si=_ZPaSteygcx0uKc5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- INTRODUÇÃO FILOSÓFICA -->
+    <section class="section-intro">
+         <h2 class="reveal" style="font-family: Orbitron; text-align: center; margin-bottom: 30px;">SINOPSE</h2>
+        <div class="image-container reveal">
+            <img src="07 (1).png" alt="Sociedade do Futuro">
+        </div>
+    </section>
+
+    <!-- O SISTEMA OPRESSOR -->
+    <section class="section-sistema">
+        <h2 class="reveal" style="font-family: Orbitron; text-align: center; margin-bottom: 30px;">PLENA IGUALDADE</h2>
+        <div class="synopsis-box reveal">
+            <p style="margin-bottom: 20px;">Ano de 2110. A humanidade conquistou o espaço e a viagem no tempo, mas se perdeu em uma cultura mundial única, onde o hedonismo, o niilismo e o relativismo dominam o modo de existir.</p>
+            <p>Sob a chamada “PLENA IGUALDADE”, o sistema do novo governo mundial eliminou toda e qualquer forma de identidade e valor das coisas e ações. A “Família”, tratada como a maior ameaça ao Estado, foi perseguida até deixar de existir. Não existem crianças, nem idosos.</p>
+            <p style="margin-top:15px; font-weight: bold; color: #ff4d4d;">Ninguém nasce. Ninguém morre. Tudo é permitido. Tudo é igual.</p>
+        </div>
+        <div class="image-container reveal">
+            <img src="04.jpg" alt="Sociedade Opressora">
+        </div>
+    </section>
+
+    <!-- A CHAVE ENCONTRADA (GRADIENTE DE TRANSIÇÃO VERMELHO -> LARANJA) -->
+    <section class="section-chave">
+        <div style="text-align: center;">
+            <h2 class="reveal" style="font-family: Orbitron; margin-bottom: 20px; color: white;">A CHAVE PARA O COLAPSO</h2>
+            <div class="image-container reveal">
+                <img src="crianca.jpg" alt="Diário visto de cima">
+            </div>
+            <p class="reveal" style="max-width: 800px; margin: 20px auto; font-size: 1.2rem; line-height: 1.6;">
+                Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museu, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
+            </p>
+        </div>
+    </section>
+
+    <!-- O PASSADO E OS GUERREIROS NSAD -->
+    <section class="section-passado">
+        <h2 class="reveal" style="font-family: Orbitron; text-align: center;">MEMÓRIA É RESISTÊNCIA</h2>
+        <div class="image-container reveal">
+            <img src="03.jpg" alt="Vida e Família">
+        </div>
+        <div class="synopsis-box reveal" style="border-left-color: #1a0808; color: #1a0808; background: rgba(255,255,255,0.2);">
+            <p>É nesse cenário que um grupo de guerreiros conhecido como <strong>NSAD</strong>, inspirado justamente nesse diário, decide arriscar tudo, usar a viagem no tempo para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.</p>
+        </div>
+    </section>
+
+    <footer style="background: #000; padding: 60px; text-align: center;">
+        <p style="font-family: Orbitron; letter-spacing: 3px;">PROJETO NSAD</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Ficção Científica | Aventura | Drama</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
