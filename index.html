@@ -126,7 +126,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ESTILOS DO RODAPÉ */
         footer { 
             background: #000; 
             padding: 60px 20px; 
@@ -215,12 +214,12 @@
             margin: 40px 0;
         }
 
-        /* --- NOVO: ESTILO DO QR CODE FLUTUANTE --- */
+        /* --- QR CODE FLUTUANTE COM COPIA E COLA --- */
         .qr-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 110px;
+            width: 120px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -232,15 +231,14 @@
             align-items: center;
             z-index: 10000;
             transition: all 0.4s ease;
-            opacity: 0.5; /* Discreto para não atrapalhar a leitura */
+            opacity: 0.5;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .qr-float:hover {
             opacity: 1;
-            transform: translateY(-5px) scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #fff;
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .qr-float img {
@@ -259,16 +257,41 @@
             text-align: center;
         }
 
-        /* Ajustes mobile para o QR Code */
+        .pix-copy-wrapper {
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            background: var(--passado-laranja);
+            border-radius: 4px;
+            padding: 6px 0;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .pix-copy-wrapper:hover {
+            background: #fff;
+        }
+
+        .pix-copy-wrapper input { display: none; }
+
+        .copy-label {
+            font-size: 0.55rem !important;
+            color: #000 !important;
+            font-weight: 900 !important;
+            letter-spacing: 0px !important;
+            text-transform: uppercase;
+        }
+
         @media (max-width: 768px) {
             .qr-float {
-                width: 80px;
+                width: 95px;
                 bottom: 20px;
                 right: 20px;
-                opacity: 0.7; /* Mais visível no mobile já que não tem hover */
-                padding: 6px;
+                opacity: 0.8;
+                padding: 8px;
             }
             .qr-float span { font-size: 0.5rem; }
+            .copy-label { font-size: 0.45rem !important; }
             
             .footer-brand { flex-direction: column; gap: 10px; }
             .content-wrap { padding: 0 20px; }
@@ -278,9 +301,14 @@
 </head>
 <body>
 
+    <!-- QR CODE FLUTUANTE -->
     <div class="qr-float">
         <img src="qr-code.png" alt="QR Code Apoio">
         <span>APOIE O PROJETO</span>
+        <div class="pix-copy-wrapper" onclick="copyPix()">
+            <input type="text" value="00020101021126580014BR.GOV.BCB.PIX013687c11184-209f-4cea-893b-f5cd18d681e35204000053039865802BR5915Veronica Amaral6009SAO PAULO62080504daqr6304C2EB" id="pixCode" readonly>
+            <span class="copy-label">COPIAR PIX</span>
+        </div>
     </div>
 
     <header>
@@ -392,6 +420,21 @@
     </footer>
 
     <script>
+        function copyPix() {
+            var copyText = document.getElementById("pixCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Mobile
+
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                const label = document.querySelector('.copy-label');
+                const originalText = label.innerText;
+                label.innerText = "COPIADO!";
+                setTimeout(() => {
+                    label.innerText = originalText;
+                }, 2000);
+            });
+        }
+
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
