@@ -107,7 +107,6 @@
             flex: 2 1 350px;
         }
 
-        /* Estilo para o gradiente nas imagens (apagando no topo e no fim) */
         .image-container { 
             width: 100%; 
             margin: 40px 0; 
@@ -124,14 +123,10 @@
             object-fit: cover;
         }
 
-        .section-intro, .section-sistema, .section-chave, .section-passado { 
-            background: var(--futuro-azul); 
-        }
-
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* ESTILOS DO RODAPÉ ATUALIZADO */
+        /* ESTILOS DO RODAPÉ */
         footer { 
             background: #000; 
             padding: 60px 20px; 
@@ -150,7 +145,7 @@
         }
 
         .footer-logo {
-            height: 50px; /* Ajuste a altura da sua logo aqui */
+            height: 50px;
             width: auto;
         }
 
@@ -190,14 +185,6 @@
         .mantenedora-content {
             max-width: 1000px;
             margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .mantenedora-content.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         .mantenedora h2 { text-align: center; }
@@ -228,7 +215,61 @@
             margin: 40px 0;
         }
 
-        @media (max-width: 480px) {
+        /* --- NOVO: ESTILO DO QR CODE FLUTUANTE --- */
+        .qr-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 110px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--passado-laranja);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10000;
+            transition: all 0.4s ease;
+            opacity: 0.5; /* Discreto para não atrapalhar a leitura */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .qr-float:hover {
+            opacity: 1;
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #fff;
+        }
+
+        .qr-float img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+
+        .qr-float span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            color: var(--passado-laranja);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Ajustes mobile para o QR Code */
+        @media (max-width: 768px) {
+            .qr-float {
+                width: 80px;
+                bottom: 20px;
+                right: 20px;
+                opacity: 0.7; /* Mais visível no mobile já que não tem hover */
+                padding: 6px;
+            }
+            .qr-float span { font-size: 0.5rem; }
+            
             .footer-brand { flex-direction: column; gap: 10px; }
             .content-wrap { padding: 0 20px; }
             section { padding: 60px 0; }
@@ -236,6 +277,11 @@
     </style>
 </head>
 <body>
+
+    <div class="qr-float">
+        <img src="qrcode.png" alt="QR Code Apoio">
+        <span>APOIE O PROJETO</span>
+    </div>
 
     <header>
         <div class="title-wrapper reveal active">
@@ -257,16 +303,15 @@
             <h2 class="reveal" style="text-align: center;">SINOPSE</h2>
             <div class="synopsis-box reveal">
                 <p>
-Ano de 2110. A humanidade conquistou o espaço e a viagem no tempo, mas se perdeu em uma cultura mundial única, onde o hedonismo, o niilismo e o relativismo dominam o modo de existir.
-<br>
-Sob a chamada “PLENA IGUALDADE”, o sistema do novo governo mundial eliminou toda e qualquer forma de identidade e valor das coisas e ações. A “Família”, tratada como a maior ameaça ao Estado, foi perseguida até deixar de existir. Não existem crianças, nem idosos.
-Ninguém nasce. Ninguém morre.
-Tudo é permitido.
-Tudo é igual. A fé já não existe mais.<br><br><br>
+                    Ano de 2110. A humanidade conquistou o espaço e a viagem no tempo, mas se perdeu em uma cultura mundial única, onde o hedonismo, o niilismo e o relativismo dominam o modo de existir.
+                    <br><br>
+                    Sob a chamada “PLENA IGUALDADE”, o sistema do novo governo mundial eliminou toda e qualquer forma de identidade e valor das coisas e ações. A “Família”, tratada como a maior ameaça ao Estado, foi perseguida até deixar de existir. Não existem crianças, nem idosos.
+                    Ninguém nasce. Ninguém morre. Tudo é permitido. Tudo é igual. A fé já não existe mais.<br><br>
 
-Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museu, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
-<br><br>
-É nesse cenário que um grupo de guerreiros conhecido como NSAD, inspirado justamente nesse diário, decide arriscar tudo, usar a viagem no tempo para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.</p>
+                    Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museu, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
+                    <br><br>
+                    É nesse cenário que um grupo de guerreiros conhecido como NSAD, inspirado justamente nesse diário, decide arriscar tudo, usar a viagem no tempo para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.
+                </p>
             </div>
         </div>
         <div class="image-container reveal">
@@ -295,10 +340,7 @@ Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 
                     </div>
                     <div class="creator-text">
                         <h3 style="font-family: Orbitron; color: var(--passado-laranja); margin-bottom: 15px;">Israel Mattos</h3>
-                        <p>Produtor Artístico | Diretor de Curtas e Videoclipes
-Israel Mattos, conhecido como “O General”, atua como produtor artístico e diretor de curtas e videoclipes, com uma trajetória marcada por mais de 200 clipes produzidos ao longo de sua carreira. Seu trabalho inclui colaborações com diversos artistas da música brasileira, como Luciano (Zezé Di Camargo & Luciano), Edu Santafé, Bavini, Sérgio Reis, Doctr Sin, Piano Mágico da Ju, Tony Angeli, Maycon & Vinicius, Thiago Skiter, entre outros.
-Além disso, possui uma sólida atuação no cenário gospel, tendo dirigido dezenas de clipes para artistas do gênero, incluindo nomes como Daniel Berg, ampliando a presença e o impacto visual da música cristã no país.
-Foi diretor do canal da Funarte no periódo de 2020 até final de 2022, contribuindo com conteúdos culturais de alcance nacional. Também é diretor e criador do filme "Deus Acima de Tudo", publicado no canal do Terça Livre, um projeto que une produção independente, narrativa autoral e visão política.</p>
+                        <p>Produtor Artístico | Diretor de Curtas e Videoclipes. Israel Mattos, conhecido como “O General”, atua como produtor artístico e diretor de curtas e videoclipes, com uma trajetória marcada por mais de 200 clipes produzidos. Seu trabalho inclui colaborações com diversos artistas da música brasileira, como Luciano (Zezé Di Camargo), Sérgio Reis, Doctr Sin, e nomes do cenário gospel como Daniel Berg.</p>
                         <p style="margin-top: 15px;">"O Diário de Erick Mattos" é o ápice de uma pesquisa sobre o que nos torna verdadeiramente humanos em um mundo corrompido.</p>
                     </div>
                 </div>
@@ -308,7 +350,7 @@ Foi diretor do canal da Funarte no periódo de 2020 até final de 2022, contribu
 
     <section class="mantenedora" id="mantenedora">
         <div class="content-wrap">
-            <div class="mantenedora-content animate">
+            <div class="mantenedora-content">
                 <h2 class="reveal">FASE 01 – MANTENEDORA</h2>
                 <div class="mantenedora-intro reveal">
                     <p>Antes de qualquer cena ser filmada, existe uma etapa essencial e invisível: manter a equipe de produção viva e 100% dedicada ao projeto.</p>
@@ -323,7 +365,7 @@ Foi diretor do canal da Funarte no periódo de 2020 até final de 2022, contribu
                 
                 <div class="mantenedora-porque reveal">
                     <h3>Por quê?</h3>
-                    <p>Sem esse apoio, não é possível realizar as reuniões necessárias com influenciadores e parceiros que viabilizarão o financiamento do filme, já que não contamos com incentivos fiscais como a Lei Rouanet.</p>
+                    <p>Sem esse apoio, não é possível realizar as reuniões necessárias com influenciadores e parceiros que viabilizarão o filme, já que não contamos com incentivos fiscais como a Lei Rouanet.</p>
                 </div>
             </div>
         </div>
@@ -333,7 +375,6 @@ Foi diretor do canal da Funarte no periódo de 2020 até final de 2022, contribu
         <div class="content-wrap">
             <div class="footer-brand">
                 <p style="font-family: Orbitron; letter-spacing: 5px; font-size: 1.2rem; margin: 0;">PROJETO</p>
-                <!-- Substitua 'logo.png' pelo nome do seu arquivo de imagem -->
                 <img src="O_Símbolo_NSAD-removebg-preview.png" alt="Logo NSAD" class="footer-logo">
             </div>
 
