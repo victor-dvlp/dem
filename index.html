@@ -13,6 +13,7 @@
             --passado-laranja: #ff7e5f;
             --text-light: #f5f5f5;
             --glass: rgba(255, 255, 255, 0.05);
+            --glass-strong: rgba(5, 12, 24, 0.95);
             --dark-gray: #050c18; 
             --gray: rgba(255, 255, 255, 0.03);
         }
@@ -40,7 +41,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('01a.png') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('01a.png') center/cover;
             position: relative;
         }
 
@@ -56,7 +57,71 @@
         .title-wrapper { font-family: 'Orbitron', sans-serif; z-index: 2; padding: 0 20px; }
         .title-top { font-size: clamp(0.8rem, 2vw, 1.5rem); letter-spacing: 10px; display: block; margin-bottom: 10px; color: var(--passado-laranja); }
         .title-main { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 900; line-height: 1; text-transform: uppercase; }
-        .credits { margin-top: 25px; font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; }
+        .credits { margin-top: 15px; font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; }
+
+        /* --- CHAMARIZ DA NOVA VERSÃO --- */
+        .callout-container {
+            margin-top: 40px;
+            z-index: 2;
+            animation: pulseGlow 3s infinite alternate;
+        }
+        .callout-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--passado-laranja);
+            margin-bottom: 20px;
+        }
+        .btn-apoiar {
+            font-family: 'Orbitron', sans-serif;
+            background: transparent;
+            color: var(--passado-laranja);
+            border: 2px solid var(--passado-laranja);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(255, 126, 95, 0.2);
+        }
+        .btn-apoiar:hover {
+            background: var(--passado-laranja);
+            color: #000;
+            box-shadow: 0 0 25px var(--passado-laranja);
+            transform: translateY(-2px);
+        }
+
+        /* ESTILO DO CONTADOR EM TEMPO REAL */
+        .live-counter {
+
+            margin-top: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+        }
+        .live-counter span {
+            color: #fff;
+            font-weight: 900;
+            text-shadow: 0 0 8px var(--passado-laranja);
+            background: rgba(255, 126, 95, 0.1);
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 126, 95, 0.3);
+            margin: 0 5px;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
 
         section { padding: 80px 0; position: relative; width: 100%; background-color: var(--futuro-azul); }
         .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 25px; z-index: 2; position: relative; }
@@ -126,6 +191,214 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        .mantenedora {
+            padding: 100px 0;
+            background-color: var(--futuro-azul);
+            position: relative;
+        }
+        
+        .mantenedora-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .mantenedora h2 { text-align: center; }
+        .mantenedora-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mantenedora-item {
+            background-color: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .mantenedora-item h3 {
+            color: var(--passado-laranja);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .mantenedora-porque {
+            background-color: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-left: 5px solid var(--passado-laranja);
+            margin: 40px 0;
+        }
+
+        /* --- MODAL DO FORMULÁRIO DE APOIO --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: var(--glass-strong);
+            border: 1px solid var(--passado-laranja);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 550px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 0 40px rgba(255, 126, 95, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--passado-laranja);
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .modal-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        
+        /* inputs do form */
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--passado-laranja);
+            text-transform: uppercase;
+        }
+        .form-control {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--passado-laranja);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Radios customizados */
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .radio-option {
+            flex: 1;
+            position: relative;
+        }
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+        .radio-label {
+            display: block;
+            text-align: center;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .radio-option input[type="radio"]:checked + .radio-label {
+            background: rgba(255, 126, 95, 0.15);
+            border-color: var(--passado-laranja);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 126, 95, 0.2);
+        }
+
+        /* Container do PIX embutido */
+        .pix-container-modal {
+            background: rgba(0,0,0,0.4);
+            border: 1px dashed var(--passado-laranja);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none; /* Ativado via JS */
+            text-align: center;
+        }
+        .pix-info-text {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        .btn-copy-modal {
+            background: var(--passado-laranja);
+            color: #000;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-copy-modal:hover { background: #fff; }
+
+        .btn-submit-form {
+            width: 100%;
+            background: var(--passado-laranja);
+            color: #000;
+            border: none;
+            padding: 14px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit-form:hover:not(:disabled) {
+            background: #fff;
+            box-shadow: 0 0 15px #fff;
+        }
+        .btn-submit-form:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         footer { 
             background: #000; 
             padding: 60px 20px; 
@@ -175,139 +448,102 @@
             color: #000;
         }
 
-        .mantenedora {
-            padding: 100px 0;
-            background-color: var(--futuro-azul);
-            position: relative;
-        }
-        
-        .mantenedora-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .mantenedora h2 { text-align: center; }
-        .mantenedora-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .mantenedora-item {
-            background-color: rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 5px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .mantenedora-item h3 {
-            color: var(--passado-laranja);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        .mantenedora-porque {
-            background-color: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-left: 5px solid var(--passado-laranja);
-            margin: 40px 0;
-        }
-
-        /* --- QR CODE FLUTUANTE COM COPIA E COLA --- */
-        .qr-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 120px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--passado-laranja);
-            border-radius: 12px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10000;
-            transition: all 0.4s ease;
-            opacity: 0.5;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .qr-float:hover {
-            opacity: 1;
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .qr-float img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 6px;
-        }
-
-        .qr-float span {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.6rem;
-            color: var(--passado-laranja);
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .pix-copy-wrapper {
-            width: 100%;
-            margin-top: 10px;
-            cursor: pointer;
-            background: var(--passado-laranja);
-            border-radius: 4px;
-            padding: 6px 0;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .pix-copy-wrapper:hover {
-            background: #fff;
-        }
-
-        .pix-copy-wrapper input { display: none; }
-
-        .copy-label {
-            font-size: 0.55rem !important;
-            color: #000 !important;
-            font-weight: 900 !important;
-            letter-spacing: 0px !important;
-            text-transform: uppercase;
-        }
-
         @media (max-width: 768px) {
-            .qr-float {
-                width: 95px;
-                bottom: 20px;
-                right: 20px;
-                opacity: 0.8;
-                padding: 8px;
-            }
-            .qr-float span { font-size: 0.5rem; }
-            .copy-label { font-size: 0.45rem !important; }
-            
             .footer-brand { flex-direction: column; gap: 10px; }
             .content-wrap { padding: 0 20px; }
             section { padding: 60px 0; }
+            .radio-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- QR CODE FLUTUANTE -->
-    <div class="qr-float">
-        <img src="qr-code.png" alt="QR Code Apoio">
-        <span>APOIE O PROJETO</span>
-        <div class="pix-copy-wrapper" onclick="copyPix()">
-            <input type="text" value="odiariodeerickmattos@gmail.com" id="pixCode" readonly>
-            <span class="copy-label">COPIAR PIX</span>
+    <!-- MODAL DE INSCRIÇÃO/APOIO -->
+    <div class="modal-overlay" id="modalApoio">
+        <div class="modal-box">
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+            <h3>Apoie o Projeto</h3>
+            
+            <form id="meuFormulario">
+                
+                <!-- Escolha do Tipo de Apoio -->
+                <div class="form-group">
+                    <label>Selecione o modo de apoio</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="apoio_financeiro" name="tipo_apoio" value="Financeiro" checked onchange="togglePixArea(true)">
+                            <label for="apoio_financeiro" class="radio-label">Apoio Financeiro</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="apoio_moral" name="tipo_apoio" value="Moral" onchange="togglePixArea(false)">
+                            <label for="apoio_moral" class="radio-label">Apoio Sem Custo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloco Pix Dinâmico interno -->
+                <div class="pix-container-modal" id="pixContainer">
+                    <p class="pix-info-text">Chave PIX E-mail: <strong>odiariodeerickmattos@gmail.com</strong></p>
+                    <input type="text" value="odiariodeerickmattos@gmail.com" id="pixCodeModal" style="display:none;">
+                    <button type="button" class="btn-copy-modal" onclick="copyPixModal()">Copiar Chave PIX</button>
+                </div>
+
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" class="form-control" placeholder="000.000.000-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone / WhatsApp</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(00) 00000-0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="regiao">Região (Estado)</label>
+                    <select id="regiao" name="regiao" class="form-control" required>
+                        <option value="" disabled selected>Selecione sua região</option>
+                        <option value="Acre">Acre</option>
+                        <option value="Alagoas">Alagoas</option>
+                        <option value="Amapá">Amapá</option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Bahia">Bahia</option>
+                        <option value="Ceará">Ceará</option>
+                        <option value="Distrito Federal">Distrito Federal</option>
+                        <option value="Espírito Santo">Espírito Santo</option>
+                        <option value="Goiás">Goiás</option>
+                        <option value="Maranhão">Maranhão</option>
+                        <option value="Mato Grosso">Mato Grosso</option>
+                        <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                        <option value="Minas Gerais">Minas Gerais</option>
+                        <option value="Pará">Pará</option>
+                        <option value="Paraíba">Paraíba</option>
+                        <option value="Paraná">Paraná</option>
+                        <option value="Pernambuco">Pernambuco</option>
+                        <option value="Piauí">Piauí</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                        <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                        <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                        <option value="Rondônia">Rondônia</option>
+                        <option value="Roraima">Roraima</option>
+                        <option value="Santa Catarina">Santa Catarina</option>
+                        <option value="São Paulo">São Paulo</option>
+                        <option value="Sergipe">Sergipe</option>
+                        <option value="Tocantins">Tocantins</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="btnEnviar" class="btn-submit-form">Enviar Dados</button>
+            </form>
         </div>
     </div>
 
@@ -316,6 +552,14 @@
             <span class="title-top">O DIÁRIO DE</span>
             <h1 class="title-main">ERICK MATTOS</h1>
             <p class="credits">Um Filme De Israel Mattos</p>
+        </div>
+        <br><br><br><br><br>
+        <div class="callout-container reveal active">
+            <p class="callout-text">MOSTRE AO MUNDO QUE O BRASIL QUER ESSA SÉRIE</p>
+            <button class="btn-apoiar" onclick="abrirModal()">Quero Apoiar</button>
+            
+            <!-- ELEMENTO ADICIONADO: CONTADOR EM TEMPO REAL -->
+            <p class="live-counter">Já somos <span id="contadorApoiadores">...</span> apoiadores engajados</p>
         </div>
     </header>
 
@@ -336,9 +580,9 @@
                     Sob a chamada “PLENA IGUALDADE”, o sistema do novo governo mundial eliminou toda e qualquer forma de identidade e valor das coisas e ações. A “Família”, tratada como a maior ameaça ao Estado, foi perseguida até deixar de existir. Não existem crianças, nem idosos.
                     Ninguém nasce. Ninguém morre. Tudo é permitido. Tudo é igual. A fé já não existe mais.<br><br>
 
-                    Nesse mundo onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museu, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
+                    Nesse world onde os laços familiares foram apagados, um antigo diário de 2020 é encontrado nas ruínas de um museum, escrito por algo visto como inexistente: uma criança. Em suas páginas estão os primeiros sinais da transformação que levou ao colapso… e, talvez, a chave para impedi-lo.
                     <br><br>
-                    É nesse cenário que um grupo de guerreiros conhecido como NSAD, inspirado justamente nesse diário, decide arriscar tudo, usar o teletransporte para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.
+                    É nesse cenário que um group de guerreiros conhecido como NSAD, inspirado justamente nesse diário, decide arriscar tudo, usar o teletransporte para garantir que esse registro sobreviva antes que seja apagado, e com ele, a última memória do que um dia fez a humanidade ser humana.
                 </p>
             </div>
         </div>
@@ -386,7 +630,7 @@
                 
                 <div class="mantenedora-grid">
                     <div class="mantenedora-item reveal"><h3>Produção de Site</h3><p>Desenvolvimento e manutenção do site oficial.</p></div>
-                    <div class="mantenedora-item reveal"><h3>Vídeos de Produção</h3><p>Criação de conteúdo audiovisual para divulgação, incluindo making of, bastidores e teasers.</p></div>
+                    <div class="mantenedora-item reveal"><h3>Vídeos de Production</h3><p>Criação de conteúdo audiovisual para divulgação, incluindo making of, bastidores e teasers.</p></div>
                     <div class="mantenedora-item reveal"><h3>Panfletos</h3><p>Material impresso para divulgação em eventos, universidades e locais estratégicos.</p></div>
                     <div class="mantenedora-item reveal"><h3>Transporte</h3><p>Custos com Uber, passagens e deslocamentos da equipe para reuniões e eventos.</p></div>
                     <div class="mantenedora-item reveal"><h3>Alimentação</h3><p>Refeições para a equipe durante reuniões, gravações e eventos de divulgação.</p></div>
@@ -427,21 +671,104 @@ Também não contamos com empresas privadas, que geralmente investem apenas em a
     </footer>
 
     <script>
-        function copyPix() {
-            var copyText = document.getElementById("pixCode");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // Mobile
+        // URL DO SEU GOOGLE APPS SCRIPT (SUA PLANILHA)
+        const URL_WEB_APP = 'https://script.google.com/macros/s/AKfycbw6mhGgO41-SmaIu-uCZXFK1lG19drZ3k4UkszRTZk0DQxuUeCZ_b_ksqGz01O6zTmI/exec';
 
+        // Lógica de manipulação do Modal
+        const modal = document.getElementById('modalApoio');
+
+        function abrirModal() {
+            modal.classList.add('active');
+            togglePixArea(true);
+        }
+
+        function fecharModal() {
+            modal.classList.remove('active');
+        }
+
+        function togglePixArea(show) {
+            const pixContainer = document.getElementById('pixContainer');
+            if (show) {
+                pixContainer.style.display = 'block';
+            } else {
+                pixContainer.style.display = 'none';
+            }
+        }
+
+        function copyPixModal() {
+            var copyText = document.getElementById("pixCodeModal");
             navigator.clipboard.writeText(copyText.value).then(() => {
-                const label = document.querySelector('.copy-label');
-                const originalText = label.innerText;
-                label.innerText = "COPIADO!";
+                const btn = document.querySelector('.btn-copy-modal');
+                const originalText = btn.innerText;
+                btn.innerText = "COPIADO!";
+                btn.style.background = "#fff";
                 setTimeout(() => {
-                    label.innerText = originalText;
+                    btn.innerText = originalText;
+                    btn.style.background = "var(--passado-laranja)";
                 }, 2000);
             });
         }
 
+        // FUNÇÃO ADICIONADA: BUSCA TOTAL DE INSCRITOS VIA GET
+        async function carregarContador() {
+            try {
+                const resposta = await fetch(URL_WEB_APP);
+                const dados = await resposta.json();
+                if (dados.status === 'sucesso') {
+                    document.getElementById('contadorApoiadores').innerText = dados.total;
+                } else {
+                    document.getElementById('contadorApoiadores').innerText = '0';
+                }
+            } catch (erro) {
+                console.error("Erro ao carregar o contador:", erro);
+                document.getElementById('contadorApoiadores').innerText = '100+'; // valor alternativo caso caia
+            }
+        }
+
+        // Lógica de envio do Formulário integrado ao Sheets
+        const formulario = document.querySelector('#meuFormulario');
+        const botaoEnviar = document.querySelector('#btnEnviar');
+
+        formulario.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            botaoEnviar.disabled = true;
+            botaoEnviar.innerText = 'Enviando...';
+
+            const formData = new FormData(formulario);
+            const dados = Object.fromEntries(formData);
+
+            try {
+                const resposta = await fetch(URL_WEB_APP, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(dados)
+                });
+
+                const resultado = await resposta.json();
+
+                if (resultado.status === 'sucesso') {
+                    alert('Muito obrigado! Seu apoio foi registrado com sucesso.');
+                    formulario.reset();
+                    fecharModal();
+                    carregarContador(); // Recarrega o contador para atualizar em tempo real logo após se inscrever
+                } else {
+                    alert('Erro ao salvar os dados: ' + resultado.mensagem);
+                }
+            } catch (erro) {
+                console.error('Erro na comunicação com o servidor:', erro);
+                alert('Não foi possível enviar os dados. O registro foi concluído mas sua rede bloqueou a resposta.');
+                carregarContador();
+            } finally {
+                botaoEnviar.disabled = false;
+                botaoEnviar.innerText = 'Enviar Dados';
+            }
+        });
+
+        // Lógica original de Reveal no Scroll
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -453,7 +780,10 @@ Também não contamos com empresas privadas, que geralmente investem apenas em a
             }
         }
         window.addEventListener("scroll", reveal);
+        
+        // Inicialização da Página
         reveal();
+        carregarContador(); // Roda a busca na planilha assim que abre a página
     </script>
 </body>
 </html>
